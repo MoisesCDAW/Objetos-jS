@@ -96,7 +96,7 @@ function eliminarPrimeroYUltimo(array){
 
 /**
  * Ejercicio nº4: Cuenta cuántos juegos hay de cada género de la lista
- * @param {Array<String>} array con los juegos y sus respectivos géneros
+ * @param {Array<Object>} array con los juegos y sus respectivos géneros
  * @returns un objeto con el género y la cantidad de juegos
  */
 function contarVideojuegosPorGenero(array){
@@ -149,3 +149,64 @@ function mergeAndSortNumbers(conjunto1, conjunto2){
 // console.log(mergeAndSortNumbers([100],[50,150]));
 
 
+/**
+ * Ejercicio nº6: Lista los productos según su tipo
+ * @param {Array<Object>} array con objetos de el nombre, isla y tipo de cada producto
+ * @returns 
+ */
+function listarProductosPorTipo(array){
+    let objeto = {};
+    let tipoSinRepetir = [];
+
+    for (let i = 0; i < array.length; i++) {
+        if (tipoSinRepetir.indexOf(array[i].tipo)==-1) {
+            tipoSinRepetir.push(array[i].tipo);
+            objeto[array[i].tipo] = {};
+        }
+    }
+
+    for (let i = 0; i < tipoSinRepetir.length; i++) {
+        let tipo = tipoSinRepetir[i];
+
+        for (let j = 0; j < array.length; j++) {
+            let islaAlimento = {};
+
+            if (array[j].tipo==tipo) {
+                islaAlimento[array[j].isla] = [array[j].nombre];
+
+                if (Object.values(objeto[tipo]).length==0) {
+                    objeto[tipo] = islaAlimento;
+                }else {
+                    objeto[tipo] = Object.assign(objeto[tipo], islaAlimento);
+                }
+            }
+        } 
+    }
+    return objeto;
+}
+
+// PRUEBAS
+// console.log(listarProductosPorTipo([
+//     {nombre:"Gofio", isla:"Tenerife", tipo:"Alimento"},
+//     {nombre:"Queso Majorero", isla:"Fuerteventura", tipo:"Alimento"},
+//     {nombre:"Ron Arehucas", isla:"Gran Canaria", tipo:"Bebida"},
+//     {nombre:"Mojo Picón", isla:"Tenerife", tipo:"Salsa"}
+// ]));
+
+// console.log(listarProductosPorTipo([
+//     {nombre:"Vino de Malvasía", isla:"Lanzarote", tipo:"Bebida"},
+//     {nombre:"Papas Arrugadas", isla:"Tenerife", tipo:"Alimento"},
+//     {nombre:"Dulce de Almendra", isla:"La Palma", tipo:"Postre"},
+//     {nombre:"Puchero Canario", isla:"Gran Canaria", tipo:"Alimento"},
+//     {nombre:"Gofio", isla:"La Gomera", tipo:"Alimento"},
+//     {nombre:"Ron de La Palma", isla:"La Palma", tipo:"Bebida"},
+// ]));
+
+
+
+function rankingPlayas(){
+
+}
+
+
+// PRUEBAS
