@@ -203,10 +203,93 @@ function listarProductosPorTipo(array){
 // ]));
 
 
+/**
+ * Ejercicio nº7: Ordena playas según su puntuación de mayor a menor
+ * @param {Array<String>} playas 
+ * @param {Array<int>} puntuacion 
+ * @returns un array con las playas en su respectivo orden. No muestra la puntuación
+ */
+function rankingPlayas(playas, puntuacion){
+    let aux = [];
+    let resultado = [];
 
-function rankingPlayas(){
+    for (let i = 0; i < playas.length; i++) {
+        aux.push([puntuacion[i], playas[i]]);
+    }
 
+    aux.sort((a,b)=>a[0]-b[0]);
+
+    for (let i = aux.length-1; i >= 0; i--) {
+        resultado.push(aux[i][1]);
+    }
+
+    return resultado;
 }
 
+// PRUEBAS
+// console.log(rankingPlayas(["Las Teresitas", "Las Canteras", "Maspalomas"], [8,9,7]));
+// console.log(rankingPlayas(["El Médano", "La Tejita"], [6,7]));
+// console.log(rankingPlayas(["Benijo", "Papagayo"], [10,9]));
+
+
+/**
+ * Ejercicio nº8: Ordena una lista de destinos de A a Z y muestra solo una cierta cantidad de destinos
+ * @param {Array<String>} lista1 
+ * @param {Array<String>} lista2 
+ * @param {int} numero 
+ * @returns array con la cantidad de destinos especificados y ordenados de a -> z
+ */
+function rutasTuristicas(lista1, lista2, numero){
+    let combi = lista1.concat(lista2);
+    let unicos = [];
+
+    for (let i = 0; i < combi.length; i++) {
+        if (unicos.indexOf(combi[i])==-1) {
+            unicos.push(combi[i]);
+        }
+    }
+
+    unicos.sort();
+    unicos = unicos.slice(0, numero);
+    return unicos;
+}
 
 // PRUEBAS
+// console.log(rutasTuristicas(["Teide", "Maspalomas"], ["Anaga", "Teide"], 3));
+// console.log(rutasTuristicas(["Garajonay", "Timanfaya"], ["Timanfaya", "Cueva de los verdes"], 2));
+// console.log(rutasTuristicas(["La Graciosa", "El Hierro"], ["La Gomera"], 1));
+
+
+/**
+ * Filtra los números pares y los guarda en un string separados por ", "
+ * @param {Array<int>} conjunto 
+ * @returns string con los números pares
+ */
+function filterAndJoinEvens(conjunto){
+    let string = "";
+    let pares = [];
+
+    for (let i = 0; i < conjunto.length; i++) {
+        if (conjunto[i]%2==0) {
+            pares.push(conjunto[i]);
+        }
+    }
+
+    for (let i = 0; i < pares.length; i++) {
+
+        if (i==pares.length-1) {
+            string += pares[i];
+        }else {
+            string += pares[i]+", ";
+        }
+    }
+
+    return string;
+}
+
+// PRUEBAS
+// console.log(filterAndJoinEvens([1,2,3,4,5,6]));
+// console.log(filterAndJoinEvens([7,9,12,18,21]));
+// console.log(filterAndJoinEvens([3,5,7]));
+
+
