@@ -261,7 +261,7 @@ function rutasTuristicas(lista1, lista2, numero){
 
 
 /**
- * Filtra los números pares y los guarda en un string separados por ", "
+ * Ejercicio nº9: Filtra los números pares y los guarda en un string separados por ", "
  * @param {Array<int>} conjunto 
  * @returns string con los números pares
  */
@@ -293,3 +293,31 @@ function filterAndJoinEvens(conjunto){
 // console.log(filterAndJoinEvens([3,5,7]));
 
 
+/**
+ * Ejercicio nº10: Toma una lista de juegos y una de puntuaciones y devuelve los tres mejores
+ * @param {Array<String>} juegos 
+ * @param {Array<int>} puntos 
+ * @returns 
+ */
+function topJuegos(juegos, puntos){
+    let puntosAux = [].concat(puntos);
+    let juegosAux = [];
+    let contador = 0;
+
+    puntosAux.sort((a,b)=>a-b);
+
+    for (let i = puntosAux.length-1; i >= 0; i--) {
+        if (contador<3) {
+            let indice = puntos.indexOf(puntosAux[i]);
+            juegosAux.push(juegos[indice]);
+            contador++;
+        }
+    }
+
+    return juegosAux
+}
+
+// PRUEBAS  
+console.log(topJuegos(["Zelda", "Mario", "Metroid", "Doom"], [95,90,88,92]));
+console.log(topJuegos(["Overwatch", "Apex Legends", "Valorant"], [85,90,88]));
+console.log(topJuegos(["Stardew Valley", "Hades", "Celeste", "Undertale"], [94,92,95,93]));
